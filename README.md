@@ -1,6 +1,6 @@
 # FORMA
 
-A minimal editorial portfolio of twelve AI-generated model and product campaign concepts.
+A minimal editorial portfolio of twenty AI-generated model and product campaign concepts.
 
 ## Preview
 

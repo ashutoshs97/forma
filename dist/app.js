@@ -82,10 +82,74 @@ const campaigns=[
     "product": "Hydration / Movement & recovery",
     "image": "hydration",
     "description": "The quiet pause after a run. A reusable bottle campaign centered on movement, recovery, and the small habits that keep us going."
+  },
+  {
+    "title": "Woven into the day",
+    "category": "Fashion",
+    "product": "Handloom sari / Everyday elegance",
+    "image": "indian-sari",
+    "description": "Indigo cotton, an easy drape, and morning light on the balcony. A contemporary Indian handloom concept focused on fabric, movement, and everyday ease.",
+    "collection": "India"
+  },
+  {
+    "title": "Naturally at ease",
+    "category": "Fashion",
+    "product": "Linen kurta / Modern essentials",
+    "image": "indian-kurta",
+    "description": "A linen kurta in a quiet courtyard. An Indian menswear concept built around breathable texture, simple tailoring, and a relaxed point of view.",
+    "collection": "India"
+  },
+  {
+    "title": "A moment for skin",
+    "category": "Beauty",
+    "product": "Skincare / Bengaluru mornings",
+    "image": "indian-skincare",
+    "description": "A familiar routine beside the window. An Indian skincare portrait with honest skin texture, soft daylight, and a simple amber dropper bottle.",
+    "collection": "India"
+  },
+  {
+    "title": "Little heirlooms",
+    "category": "Fashion",
+    "product": "Gold jewelry / Personal rituals",
+    "image": "indian-jewelry",
+    "description": "Small gold jhumkas and a cotton kurta. A modern Indian jewelry concept celebrating pieces that feel personal enough to wear every day.",
+    "collection": "India"
+  },
+  {
+    "title": "City in stride",
+    "category": "Fashion",
+    "product": "Sneakers / Mumbai street moments",
+    "image": "indian-sneakers",
+    "description": "An unhurried pause on the steps before the day begins. A footwear concept with Indian casting, easy styling, and practical everyday detail.",
+    "collection": "India"
+  },
+  {
+    "title": "Your own soundtrack",
+    "category": "Lifestyle",
+    "product": "Headphones / Bengaluru streets",
+    "image": "indian-audio",
+    "description": "Music on a leafy neighborhood walk. A personal audio campaign concept grounded in the everyday rhythm of an Indian city.",
+    "collection": "India"
+  },
+  {
+    "title": "Time for chai",
+    "category": "Lifestyle",
+    "product": "Tea & ceramics / Pune at home",
+    "image": "indian-tea",
+    "description": "A clay cup and a quiet kitchen table. A contemporary Indian lifestyle concept about the small pleasure of making time for tea.",
+    "collection": "India"
+  },
+  {
+    "title": "A warmer shade",
+    "category": "Beauty",
+    "product": "Lip color / Delhi dressing table",
+    "image": "indian-lipcolor",
+    "description": "A warm terracotta shade in natural light. An Indian beauty concept captured in a familiar getting-ready moment, with soft color and real texture.",
+    "collection": "India"
   }
 ];
 const gallery=document.querySelector('#gallery'),dialog=document.querySelector('#campaign-dialog');let selected=0,lastFocus;
-function render(filter='all'){gallery.replaceChildren();campaigns.forEach((c,i)=>{if(filter!=='all'&&filter!==c.category)return;const card=document.createElement('button');card.className='campaign';card.setAttribute('aria-label',`View ${c.title} campaign`);card.innerHTML=`<div class="art"><div class="art-image" role="img" aria-label="${c.product}, AI-generated model campaign" style="background-image:url(assets/${c.image}.png)"></div><span class="view" aria-hidden="true">↗</span></div><div class="campaign-meta"><div><h3>${c.title}</h3><p>${c.product}</p></div><span>${String(i+1).padStart(2,'0')} / CONCEPT</span></div>`;card.onclick=()=>{selected=i;updateDialog();openDialog(dialog)};gallery.append(card)})}
+function render(filter='all'){gallery.replaceChildren();campaigns.forEach((c,i)=>{if(filter!=='all'&&(filter==='India'?c.collection!=='India':filter!==c.category))return;const card=document.createElement('button');card.className='campaign';card.setAttribute('aria-label',`View ${c.title} campaign`);card.innerHTML=`<div class="art"><div class="art-image" role="img" aria-label="${c.product}, AI-generated model campaign" style="background-image:url(assets/${c.image}.png)"></div><span class="view" aria-hidden="true">↗</span></div><div class="campaign-meta"><div><h3>${c.title}</h3><p>${c.product}</p></div><span>${String(i+1).padStart(2,'0')} / CONCEPT</span></div>`;card.onclick=()=>{selected=i;updateDialog();openDialog(dialog)};gallery.append(card)})}
 function updateDialog(){const c=campaigns[selected];document.querySelector('#dialog-title').textContent=c.title;document.querySelector('#dialog-description').textContent=c.description;const art=document.querySelector('.dialog-art');art.style.backgroundImage=`url(assets/${c.image}.png)`;art.setAttribute('aria-label',c.product+' AI-generated portrait')}
 function openDialog(el){lastFocus=document.activeElement;el.showModal();document.body.classList.add('modal-open')}
 document.querySelectorAll('dialog').forEach(d=>{d.querySelector('.close').onclick=()=>d.close();d.addEventListener('close',()=>{document.body.classList.remove('modal-open');lastFocus?.focus()});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()}})});
