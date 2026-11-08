@@ -21,6 +21,12 @@ Import this GitHub repository in Netlify. The included `netlify.toml` sets the p
 - Product catalog behavior and styling: `dist/products.js`, `dist/products.css`
 - Campaign images: `dist/assets/`
 
-The images are illustrative AI-generated concept work, not commissioned brand photography. Contact details are not configured. The project brief form downloads a text file locally; it does not send submissions.
+The images are illustrative AI-generated concept work, not commissioned brand photography.
+
+## Project enquiries
+
+The project brief form sends name, reply email, brand/product, and campaign idea to `https://formspree.io/f/xrppwzbj`. It uses the `@formspree/ajax@1` CDN library for submission states, inline validation errors, and an in-page success message. The normal HTML `POST` action is retained as a fallback if the library cannot load. No build step, server, or secret key is needed.
+
+Form configuration and lifecycle messages are in `dist/formspree.js`. Form markup is in `dist/index.html`. Test actual delivery from the hosted HTTPS website; the Formspree account's verification and domain settings still apply. No live test enquiry was sent during integration.
 
 Every product category now contains at least four images. The product index contains 57 images in 14 categories. Generation briefs for the category expansion are recorded in `category-image-prompts.json`.
